@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="All testsuite" parallel="tests"  thread-count="1">
+
+<suite-files> 
+	
+<suite-file path="regressionTestng.xml"></suite-file>	
+<suite-file path="sanityTestng.xml"></suite-file>
+</suite-files>
+
+</suite> <!-- Suite -->

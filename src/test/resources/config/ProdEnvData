@@ -1,0 +1,9 @@
+#env = prod
+service = places
+authToken = 123abcprod
+value = qaclick123
+places_BaseURI = https://rahulshettyacademy.com
+
+##########
+service = circuit
+circuits_BaseURI = http://ergast.com
