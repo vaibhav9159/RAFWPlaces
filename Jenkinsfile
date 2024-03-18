@@ -47,9 +47,8 @@ pipeline
     steps {
         script {
            
- def dockerCommand = "docker run --name apitesting${BUILD_NUMBER} -e MAVEN_OPT='-Dsurefire.suiteXmlFiles=src/test/resources/testrunners/sanityTestng.xml' vaibhavs07/apiplaces:latest"
+ def exitcode = sh(srcipt: "docker run --name apitesting${BUILD_NUMBER} -e MAVEN_OPTS='-Dsurefire.suiteXmlFiles=src/test/resources/testrunners/sanityTestng.xml' vaibhavs07/apiplaces:latest",returnStatus: true)
             
-            def exitCode = sh(script: dockerCommand, returnStatus: true)
             
             if (exitCode != 0) {
                 currentBuild.result = 'FAILURE'
@@ -57,10 +56,11 @@ pipeline
             sh "docker start apitesting${BUILD_NUMBER}"
             sh "docker rm -f apitesting${BUILD_NUMBER}"
         }
-    }
-}
+      }
+    } 
          
-
-         
-    }
-}
+  } 
+ 
+ } 
+ 
+ 
