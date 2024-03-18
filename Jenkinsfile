@@ -3,7 +3,7 @@ pipeline
     agent any
     
     tools{
-    	maven 'maven'
+    	maven '3.8.6'
         }
 
     stages 
@@ -70,25 +70,13 @@ pipeline
         stage('Sanity Automation Test') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    git 'https://github.com/naveenanimation20/June2023RestAssuredFramework.git'
+                    git 'https://github.com/vaibhav9159/RAFWPlaces.git'
                     sh "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/sanityTestng.xml"
                     
                 }
             }
         }
         
-        
-         stage('Publish Extent Report'){
-            steps{
-                     publishHTML([allowMissing: false,
-                                  alwaysLinkToLastBuild: false, 
-                                  keepAll: false, 
-                                  reportDir: 'reports', 
-                                  reportFiles: 'APIExecutionReport.html', 
-                                  reportName: 'API HTML Extent Report', 
-                                  reportTitles: ''])
-            }
-        }
         
         
         stage("Deploy to PROD"){
