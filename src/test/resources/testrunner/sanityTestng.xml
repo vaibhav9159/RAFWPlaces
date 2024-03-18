@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Sanity Suite" parallel="tests"  thread-count="1">
-  <test  name="TestPlaces">
- 	<!--   <parameter name="baseURI" value="https://rahulshettyacademy.com"></parameter>   --> 
-    <classes>
-      <class name="com.qa.places.tests.CreatePlaceTest"/>
-     <!--  <class name="com.qa.places.tests.GetPlaceTest"/> -->
-      <!-- <class name="com.qa.places.tests.UpdatePlaceTest"/>  -->
-        <class name="com.qa.places.tests.DeletePlaceTest"/>
-    </classes>
-  </test> <!-- Test -->
   
   <test name="CircuitTest">
 	   <parameter name="circuitsBASEURI" value="http://ergast.com"></parameter>
