@@ -8,7 +8,7 @@ import org.testng.ITestContext;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.jayway.jsonpath.JsonPath;
+
 import com.qa.places.base.BaseTest;
 import com.qa.places.client.RestClient;
 import com.qa.places.pojo.UpdateDelete;
