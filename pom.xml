@@ -96,8 +96,8 @@
     <configuration>
         <forkCount>3</forkCount>
         <reuseForks>true</reuseForks>
-   <!--     <suiteXmlFiles>src/test/resources/testrunner/allTestsTestng.xml</suiteXmlFiles>  -->
-   <suiteXmlFiles>${suiteXmlFilePath}</suiteXmlFiles>
+       <suiteXmlFiles>src/test/resources/testrunner/regressionTestng.xml</suiteXmlFiles>   
+  <!--   <suiteXmlFiles>${suiteXmlFilePath}</suiteXmlFiles>  -->
   
     </configuration>
   </plugin>
