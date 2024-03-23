@@ -27,7 +27,7 @@ public class BaseTest {
 	protected Properties prop;
 	protected RestClient restClient;
 	protected String baseURI;
-	protected String circuitsBASEURI;
+//	protected String circuitsBASEURI;
 	
 //	@Parameters ({"circuitsBASEURI"}) 
 	@BeforeClass
