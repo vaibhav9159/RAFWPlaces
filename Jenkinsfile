@@ -5,13 +5,6 @@ pipeline
     tools{
     	maven '3.8.6'
         }
-        
-    environment{
-   
-        BUILD_NUMBER = "${BUILD_NUMBER}"
-   
-    }
-    
 
     stages 
     {
@@ -31,7 +24,7 @@ pipeline
                 }
             }
         }
-
+        
         
         
         stage("Deploy to QA"){
@@ -39,28 +32,57 @@ pipeline
                 echo("deploy to qa done")
             }
         }
-             
-             
                 
-                
-      stage('Run Docker Image with Regression Tests') {
-    steps {
-        script {
-           
- def exitcode = sh(script: "docker run --name apitesting${BUILD_NUMBER} -e MAVEN_OPTS='-Dsurefire.suiteXmlFiles=src/test/resources/testrunner/regressionTestng.xml' vaibhavs07/apiplaces:latest",returnStatus: true)
-            
-            
-            if (exitCode != 0) {
-                currentBuild.result = 'FAILURE'
+        stage('Regression API Automation Test') {
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    git 'https://github.com/vaibhav9159/RAFWPlaces.git'
+                    sh "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testrunner/regressionTestng.xml"
+                    
+                }
             }
-            sh "docker start apitesting${BUILD_NUMBER}"
-            sh "docker rm -f apitesting${BUILD_NUMBER}"
         }
-      }
-    } 
-         
-  } 
- 
- } 
- 
- 
+                
+     
+        stage('Publish Allure Reports') {
+           steps {
+                script {
+                    allure([
+                        includeProperties: false,
+                        jdk: '',
+                        properties: [],
+                        reportBuildPolicy: 'ALWAYS',
+                        results: [[path: '/allure-results']]
+                    ])
+                }
+            }
+        }
+        
+        
+        
+        
+         stage("Deploy to STAGE"){
+            steps{
+                echo("deploy to STAGE done")
+            }
+        }
+        
+        stage('Sanity Automation Test') {
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    git 'https://github.com/vaibhav9159/RAFWPlaces.git'
+                    sh "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testrunner/sanityTestng.xml"
+                    
+                }
+            }
+        }
+        
+        
+        
+        stage("Deploy to PROD"){
+            steps{
+                echo("deploy to PROD")
+            }
+        }
+    }
+}

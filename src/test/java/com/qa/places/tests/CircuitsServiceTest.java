@@ -29,7 +29,7 @@ public class CircuitsServiceTest extends BaseTest{
 	//	  res.prettyPrint();
 		  
 		  JsonPathValidator js = new JsonPathValidator();
-		 List<String> singlecountry= js.readList(res, "$.MRData.CircuitTable.Circuits[?(@.circuitId=='sochi')].Location.country");
+		 List<String> singlecountry= js.readList(res, "$.MRData.CircuitTable.Circuits.[?(@.circuitId=='sochi')].Location.country");
 		 System.out.println("single country-->"+singlecountry);
 		 Assert.assertEquals(singlecountry.get(0), "Russia");
 		 Assert.assertEquals(statuscode, 200);

@@ -11,11 +11,5 @@
     </classes>
   </test> <!-- Test -->
   
-<!--  <test name="CircuitTest">
-	   <parameter name="circuitsBASEURI" value="http://ergast.com"></parameter>
-    <classes>
-      <class name="com.qa.places.tests.CircuitsServiceTest"/>
 
-    </classes>
-  </test>  -->  <!-- Test -->  
 </suite> <!-- Suite -->

@@ -27,7 +27,7 @@ public class JsonPathValidator {
 		return JsonPath.read(res, jsonPath);
 	}
 	
-	public <T> List<Map<Object,Object>> readListOfMaps(Response response, String jsonPath)
+	public <T> List<Map<T,T>> readListOfMaps(Response response, String jsonPath)
 	{
 		String res= response.getBody().asString();
 		return JsonPath.read(res, jsonPath);

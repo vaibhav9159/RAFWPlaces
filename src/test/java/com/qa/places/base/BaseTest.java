@@ -29,16 +29,17 @@ public class BaseTest {
 	protected String baseURI;
 	protected String circuitsBASEURI;
 	
-	@Parameters ({"circuitsBASEURI"}) 
+//	@Parameters ({"circuitsBASEURI"}) 
 	@BeforeClass
-	public void setup(@Optional()String circuitsBASEURI) //// reading circuits base URI from TestNg file, have to mark it as optional
+//	public void setup(@Optional()String circuitsBASEURI) //// reading circuits base URI from TestNg file, have to mark it as optional
+	public void setup() 
 	{
 		RestAssured.filters(new AllureRestAssured());
 		
 		configManager = new ConfigurationManager();
 		prop = configManager.readPropFile();
 		baseURI = prop.getProperty("places_BaseURI");  /// reading places baseURI from prop file 
-		this.circuitsBASEURI=circuitsBASEURI;			//// reading circuits base URI from TestNg file	
+//		this.circuitsBASEURI=circuitsBASEURI;			//// reading circuits base URI from TestNg file	
 	   
 	}
 
