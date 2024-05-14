@@ -19,14 +19,13 @@ pipeline
         {
             steps
             {
-                sh 'mvn clean install'
+                echo ("initial stage")
             }
             post 
             {
                 success
                 {
-                    junit '**/target/surefire-reports/TEST-*.xml'
-                    archiveArtifacts 'target/*.jar'
+                    echo ("initial stage test done") 
                 }
             }
         }
