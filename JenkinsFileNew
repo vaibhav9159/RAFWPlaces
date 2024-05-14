@@ -46,7 +46,7 @@ pipeline
       stage('Run Docker Image with Regression Tests') {
     steps {
         script {
-            def exitCode = sh(script: docker run --name apitesting${BUILD_NUMBER} -e MAVEN_OPTS='-Dsurefire.suiteXmlFiles=src/test/resources/testrunner/regressionTestng.xml vaibhavs07/apitest:latest', returnStatus: true)
+            def exitCode = sh(script: "docker run --name apitesting${BUILD_NUMBER} -e MAVEN_OPTS='-Dsurefire.suiteXmlFiles=src/test/resources/testrunner/regressionTestng.xml' vaibhavs07/apitest:latest", returnStatus: true)
             
             if (exitCode != 0) {
                 currentBuild.result = 'FAILURE'
