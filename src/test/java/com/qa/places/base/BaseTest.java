@@ -2,7 +2,7 @@ package com.qa.places.base;
 
 import java.util.Properties;
 
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.*;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
@@ -30,7 +30,7 @@ public class BaseTest {
 //	protected String circuitsBASEURI;
 	
 //	@Parameters ({"circuitsBASEURI"}) 
-	@BeforeClass
+	@BeforeTest
 //	public void setup(@Optional()String circuitsBASEURI) //// reading circuits base URI from TestNg file, have to mark it as optional
 	public void setup() 
 	{
