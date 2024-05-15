@@ -42,7 +42,7 @@ pipeline
 
  stage('Build Image'){
             steps{
-                sh 'docker build -t=vaibhavs07/apitest:latest .'
+                sh 'docker build -t apitest .'
             }
         }
 
@@ -53,10 +53,9 @@ pipeline
                 DOCKER_HUB = credentials('dockerhub-creds')
             }
             steps{
+                sh 'docker tag apitest:latest vaibhavs07/apitest'
                 sh 'echo ${DOCKER_HUB_PSW} | docker login -u ${DOCKER_HUB_USR} --password-stdin'
-                sh 'docker push vaibhavs07/apitest:latest'
-                sh "docker tag apitest:latest vaibhavs07/apitest:${env.BUILD_NUMBER}"
-                sh "docker push vaibhavs07/apitest:${env.BUILD_NUMBER}"
+                sh 'docker push vaibhavs07/apitest'
             }
         }
 
