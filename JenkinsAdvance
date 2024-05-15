@@ -1,0 +1,99 @@
+pipeline 
+{
+    agent any
+    
+    tools{
+    	maven '3.8.6'
+        }
+        
+    environment{
+   
+        BUILD_NUMBER = "${BUILD_NUMBER}"
+   
+    }
+    
+
+    stages 
+    {
+        stage('Check Test Build') 
+        {
+            steps
+            {
+                echo ("initial stage")
+            }
+            post 
+            {
+                success
+                {
+                    echo ("initial stage test done") 
+                }
+            }
+        }
+
+        
+        
+        stage("Deploy to QA"){
+            steps{
+                echo("deploy to qa done")
+            }
+        }
+             
+
+
+ stage('Build Image'){
+            steps{
+                sh 'docker build -t=vaibhavs07/apitest:latest .'
+            }
+        }
+
+
+  stage('Push Image'){
+            environment{
+                // assuming you have stored the credentials with this name
+                DOCKER_HUB = credentials('dockerhub-creds')
+            }
+            steps{
+                sh 'echo ${DOCKER_HUB_PSW} | docker login -u ${DOCKER_HUB_USR} --password-stdin'
+                sh 'docker push vaibhavs07/apitest:latest'
+                sh "docker tag apitest:latest vaibhavs07/apitest:${env.BUILD_NUMBER}"
+                sh "docker push vaibhavs07/apitest:${env.BUILD_NUMBER}"
+            }
+        }
+
+
+
+  stage('Run Docker Image with Regression Tests') {
+    steps {
+        script {
+            def exitCode = sh(script: "docker run --name apitesting${BUILD_NUMBER} -e MAVEN_OPTS='-Dsurefire.suiteXmlFiles=src/test/resources/testrunner/regressionTestng.xml' vaibhavs07/apitest:latest", returnStatus: true)
+            
+            if (exitCode != 0) {
+                currentBuild.result = 'FAILURE'
+            }
+           
+        }
+    }
+}
+
+
+
+
+post {
+        always {
+            sh 'docker logout'
+        }
+    }
+
+
+                
+                
+    
+
+
+
+        
+         
+
+         
+    }
+}
