@@ -30,7 +30,7 @@ public class BaseTest {
 //	protected String circuitsBASEURI;
 	
 //	@Parameters ({"circuitsBASEURI"}) 
-	@BeforeTest
+	@BeforeClass
 //	public void setup(@Optional()String circuitsBASEURI) //// reading circuits base URI from TestNg file, have to mark it as optional
 	public void setup() 
 	{
