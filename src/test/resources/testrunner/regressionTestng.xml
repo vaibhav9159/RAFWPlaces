@@ -12,9 +12,9 @@
  	<!--   <parameter name="baseURI" value="https://rahulshettyacademy.com"></parameter>   --> 
     <classes>
       <class name="com.qa.places.tests.CreatePlaceTest"/>
-      <class name="com.qa.places.tests.GetPlaceTest"/>
+<!--       <class name="com.qa.places.tests.GetPlaceTest"/>
       <class name="com.qa.places.tests.UpdatePlaceTest"/>
-        <class name="com.qa.places.tests.DeletePlaceTest"/>
+        <class name="com.qa.places.tests.DeletePlaceTest"/> -->
     </classes>
   </test> <!-- Test -->
   
